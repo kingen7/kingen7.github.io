@@ -40,12 +40,12 @@ const OpenSourceCard = ({ project }: { project: OpenSourceProject }) => {
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-1 text-xs tracking-wide text-muted-foreground/70">
               <GitPullRequest className="w-3 h-3" />
-              {project.prs.length} PR{project.prs.length !== 1 ? "s" : ""}
+              {project.prs.length} 个拉取请求
             </span>
             <span className="w-px h-2.5 bg-border/60" />
             <span className="flex items-center gap-1 text-xs tracking-wide text-muted-foreground/70">
               <CircleDot className="w-3 h-3" />
-              {project.issues.length} Issue{project.issues.length !== 1 ? "s" : ""}
+              {project.issues.length} 个问题
             </span>
           </div>
         </div>

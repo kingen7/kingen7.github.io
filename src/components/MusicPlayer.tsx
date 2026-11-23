@@ -34,8 +34,8 @@ const MusicIcon = ({
       className="w-12 h-12 rounded-xl overflow-hidden cursor-pointer active:scale-95 transition-all shadow-sm group"
     >
       <img
-        src="/images/aruarian-dance.webp"
-        alt="《Aruarian Dance》封面"
+        src={`${import.meta.env.BASE_URL}images/my-favorite-things.webp`}
+        alt="《My Favorite Things》封面"
         className={`w-full h-full object-cover transition-transform duration-500 ${
           isPlaying ? "scale-110" : "scale-100 group-hover:scale-105"
         }`}
@@ -62,7 +62,8 @@ export const MusicPlayer = () => {
     <div className="w-full flex justify-end pr-2">
       <audio
         ref={audioRef}
-        src="/audio/aruarian-dance.mp3"
+        src={`${import.meta.env.BASE_URL}audio/my-favorite-things.mp3`}
+        preload="none"
         loop
         onEnded={() => setIsPlaying(false)}
       />
@@ -79,12 +80,12 @@ export const MusicPlayer = () => {
         <div className="flex flex-col min-w-[130px] justify-center">
           <div className="flex items-center gap-2">
             <span className="text-sm font-light tracking-tight text-foreground truncate">
-              Aruarian Dance
+              My Favorite Things
             </span>
             {isPlaying && <MusicBars />}
           </div>
           <span className="text-[12px] text-muted-foreground font-light tracking-wide">
-            Nujabes
+            Sleeping at Last
           </span>
         </div>
 

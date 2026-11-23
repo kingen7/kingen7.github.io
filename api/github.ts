@@ -1,7 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "GET") {
     return res.status(405).json({ error: "Method not allowed" });
@@ -14,6 +12,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(400).json({ error: "Missing username" });
   }
 
+  try {
+    const activity = await fetchGitHubActivity(username, process.env.GITHUB_TOKEN);
+    res.setHeader("Cache-Control", "s-maxage=3600, stale-while-revalidate=86400");
+    return res.status(200).json(activity);
+  } catch {
+    return res.status(502).json({ error: "GitHub activity unavailable" });
+  }
+}
+
+export async function fetchGitHubActivity(username: string, token?: string) {
   let contributions: Array<{ date: string; count: number; level: 0 | 1 | 2 | 3 | 4 }> = [];
   let repos: Array<{ name: string; count: number; href: string; avatarUrl?: string }> = [];
 
@@ -36,6 +44,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     console.warn("Contributions API network warning:", err);
   }
 
+  if (!contributions.length) throw new Error("GitHub activity unavailable");
+
   // Fetch top repos from GitHub REST API
   try {
     const authHeaders: Record<string, string> = {
@@ -43,8 +53,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       "User-Agent": "Charan-Portfolio",
       "X-GitHub-Api-Version": "2022-11-28",
     };
-    if (GITHUB_TOKEN) {
-      authHeaders["Authorization"] = `Bearer ${GITHUB_TOKEN}`;
+    if (token) {
+      authHeaders["Authorization"] = `Bearer ${token}`;
     }
 
     const controller = new AbortController();
@@ -80,10 +90,5 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     console.warn("GitHub Repos API network warning:", err);
   }
 
-  res.setHeader("Cache-Control", "s-maxage=3600, stale-while-revalidate=86400");
-
-  return res.status(200).json({
-    contributions,
-    repos,
-  });
+  return { contributions, repos };
 }

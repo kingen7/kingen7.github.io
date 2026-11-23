@@ -17,16 +17,16 @@ const OpenSource = () => {
           onClick={() => navigate("/")}
           className="flex w-fit items-center gap-3 text-md font-light tracking-tight text-muted-foreground cursor-pointer duration-200 hover:text-foreground"
         >
-          <ChevronLeft size={20} strokeWidth={2.25} /> Back to Home
+          <ChevronLeft size={20} strokeWidth={2.25} /> 返回首页
         </button>
       </FadeIn>
 
       <FadeIn delay={0.1} yOffset={15} duration={0.5} className="flex flex-col gap-2">
         <h1 className="text-2xl font-light tracking-tight sm:text-3xl">
-          Open Source Contributions
+          开源贡献
         </h1>
         <p className="text-muted-foreground font-light text-lg">
-          Projects and organizations I have contributed to through pull requests, bug reports, and feature suggestions.
+          我曾通过拉取请求、问题反馈和功能建议为这些开源项目和组织作贡献。
         </p>
       </FadeIn>
 

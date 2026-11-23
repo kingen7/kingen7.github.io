@@ -1,4 +1,5 @@
 export interface Blog {
+  slug: string;
   title: string;
   description: string;
   content: string;
@@ -9,12 +10,13 @@ export interface Blog {
 
 export const blogs: Blog[] = [
   {
-    title: "How It All Started — My Programming Journey",
+    slug: "how-it-all-started-—-my-programming-journey",
+    title: "一切如何开始——我的编程之路",
     description:
-      "I started programming a month before my B.Tech even began. This is the story of every assumption I made, and every time I proved myself wrong.",
-    tags: ["Journey", "Programming", "Reflection"],
+      "工科本科开学前一个月，我开始学编程。这篇文章记录了我当时的种种想法，以及我如何一次次发现自己想错了。",
+    tags: ["学习历程", "编程", "反思"],
     date: "2026-05-10",
-    readTime: "10 min read",
+    readTime: "约 10 分钟阅读",
     content: `I started programming a month before my B.Tech even began.
 
 It was during summer holidays, and I was mostly just chilling at home with nothing serious going on. Around that time, AI had also started booming everywhere. Every other video, post, or discussion online was somehow connected to coding, AI, or software. Social media, friends, family — everyone kept talking about how important programming was becoming, especially in engineering.

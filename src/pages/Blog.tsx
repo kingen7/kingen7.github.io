@@ -14,7 +14,7 @@ const Blog = () => {
           onClick={() => navigate("/")}
           className="flex w-fit items-center gap-3 text-md font-light tracking-tight text-muted-foreground cursor-pointer duration-200 hover:text-foreground"
         >
-          <ChevronLeft size={20} strokeWidth={2.25} /> Back to Home
+          <ChevronLeft size={20} strokeWidth={2.25} /> 返回首页
         </button>
       </FadeIn>
       <FadeIn
@@ -24,11 +24,10 @@ const Blog = () => {
         className="flex flex-col gap-2"
       >
         <h1 className="text-2xl font-light tracking-tight sm:text-3xl">
-          All Blogs
+          全部博客
         </h1>
         <p className="text-muted-foreground font-light text-lg">
-          Thoughts, write-ups, and explorations on design, development, and
-          everything in between.
+          关于设计、开发及相关话题的思考、记录与探索。
         </p>
       </FadeIn>
       <div className="flex flex-col gap-4 mt-6">

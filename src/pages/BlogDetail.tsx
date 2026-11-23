@@ -10,9 +10,7 @@ import NotFound from "./NotFound";
 const BlogDetail = () => {
   const navigate = useNavigate();
   const { slug } = useParams();
-  const blog = blogs.find(
-    (b) => b.title.toLowerCase().replace(/\s+/g, "-") === slug,
-  );
+  const blog = blogs.find((article) => article.slug === slug);
 
   if (!blog) {
     return <NotFound />;

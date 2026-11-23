@@ -14,7 +14,6 @@ import Navbar from "./components/Navbar.tsx";
 import ScrollToTop from "./components/helpers/ScrollToTop.tsx";
 import BlogDetail from "./pages/BlogDetail.tsx";
 import SmoothScroll from "./components/helpers/SmoothScroll.tsx";
-import Footer from "./components/Footer.tsx";
 import OpenSource from "./pages/OpenSource.tsx";
 import OpenSourceDetail from "./pages/OpenSourceDetail.tsx";
 import NotFound from "./pages/NotFound.tsx";
@@ -48,7 +47,6 @@ createRoot(document.getElementById("root")!).render(
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </div>
-              <Footer />
             </div>
           </BrowserRouter>
         </SmoothScroll>

@@ -25,7 +25,7 @@ export const openSourceProjects: OpenSourceProject[] = [
     logoLight: "/images/opensource/bruno-light.svg",
     logoDark: "/images/opensource/bruno-dark.svg",
     link: "https://github.com/usebruno/bruno",
-    description: "An open-source, lightweight API client for testing & exploring APIs.",
+    description: "用于测试和探索 API 的轻量级开源客户端。",
     prs: [
       {
         id: "9295",
@@ -44,7 +44,7 @@ export const openSourceProjects: OpenSourceProject[] = [
     logoLight: "/images/opensource/excalidraw-light.webp",
     logoDark: "/images/opensource/excalidraw-dark.webp",
     link: "https://github.com/excalidraw/excalidraw",
-    description: "A virtual collaborative whiteboard tool for sketching hand-drawn diagrams.",
+    description: "用于绘制手绘风格图示的在线协作白板。",
     prs: [
       {
         id: "12105",
@@ -88,7 +88,7 @@ export const openSourceProjects: OpenSourceProject[] = [
     logoLight: "/images/opensource/vengeance-light.svg",
     logoDark: "/images/opensource/vengeance-dark.svg",
     link: "https://github.com/Ashutoshx7/VengeanceUI",
-    description: "A modern React UI library with animated components for stunning landing pages.",
+    description: "现代 React UI 组件库，提供用于制作落地页的动画组件。",
     prs: [
       {
         id: "86",
@@ -115,7 +115,7 @@ export const openSourceProjects: OpenSourceProject[] = [
     logoLight: "/images/opensource/reicon-light.webp",
     logoDark: "/images/opensource/reicon-dark.webp",
     link: "https://github.com/dqev/reicon",
-    description: "A meticulously crafted open-source SVG icon library for modern web apps.",
+    description: "为现代 Web 应用设计的开源 SVG 图标库。",
     prs: [
       {
         id: "67",

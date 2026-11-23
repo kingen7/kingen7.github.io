@@ -9,7 +9,7 @@ import SocialIcon from "./helpers/SocialIcon";
 import { motion, AnimatePresence } from "framer-motion";
 import { containerVariants, itemVariants } from "@/lib/motionVariants";
 
-const LABELS = ["全栈开发者", "不只靠 AI 写代码"];
+const LABELS = ["全栈开发人员", "我不是Vibe Coder❤"];
 
 const Hero = () => {
   const [labelIdx, setLabelIdx] = useState(0);
@@ -34,7 +34,7 @@ const Hero = () => {
           <div className="flex shrink-0 items-center justify-center will-change-[transform,opacity] transform-gpu">
             {/* avatar */}
             <img
-              src={`${import.meta.env.BASE_URL}images/musashi.svg`}
+              src={`${import.meta.env.BASE_URL}images/profile-avatar.png`}
               alt={`${profile.name}的头像`}
               decoding="async"
               className="block h-35 w-35 shrink-0 rounded-full border-2 border-border object-cover object-center p-1 shadow-sm sm:h-40 sm:w-40"
@@ -70,35 +70,26 @@ const Hero = () => {
 
         <motion.div variants={itemVariants} className="space-y-5 sm:space-y-6">
           <h1 className="max-w-full text-[1.7rem] font-normal tracking-tight leading-tight sm:text-[2.05rem] md:text-[2.15rem]">
-            <span style={{ display: "inline-grid" }}>
-              <span style={{ visibility: "hidden", gridArea: "1/1" }} aria-hidden>
-                {LABELS.reduce((a, b) => (a.length >= b.length ? a : b))}
-              </span>
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={labelIdx}
-                  style={{ gridArea: "1/1" }}
-                  initial={{ opacity: 0, filter: "blur(8px)" }}
-                  animate={{ opacity: 1, filter: "blur(0px)" }}
-                  exit={{ opacity: 0, filter: "blur(8px)" }}
-                  transition={{ duration: 0.4 }}
-                >
-                  {LABELS[labelIdx]}
-                  {labelIdx === 1 && (
-                    <span className="text-[0.8em] ml-1.5">🤍</span>
-                  )}
-                </motion.span>
-              </AnimatePresence>
-            </span>
-            {" —— "}
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={labelIdx}
+                className="inline-block"
+                initial={{ opacity: 0, filter: "blur(8px)" }}
+                animate={{ opacity: 1, filter: "blur(0px)" }}
+                exit={{ opacity: 0, filter: "blur(8px)" }}
+                transition={{ duration: 0.4 }}
+              >
+                {LABELS[labelIdx]}
+              </motion.span>
+            </AnimatePresence>
             <span className="text-[0.85em] font-light text-muted-foreground sm:text-[0.90em]">
-              探索系统是怎么运转的，也琢磨怎样把代码写得更清晰
+              学习系统实际运作方式以及如何编写简洁的代码
             </span>
           </h1>
           <p className="text-base font-light leading-7 text-muted-foreground sm:text-lg sm:leading-8">
-            我用{" "}
+            我使用以下方式构建后端系统和简洁的接口：{" "}
             <span className="inline items-center gap-2 align-middle">
-              {skills.map((skill) => (
+              {skills.filter((skill) => skill.name !== "Supabase").map((skill) => (
                 <span
                   key={skill.name}
                   className="bg-card ml-1 inline-flex items-center gap-1.5 rounded-md border border-dashed px-2 py-1 text-xs text-foreground sm:px-2.5 sm:text-sm transition-colors hover:border-foreground/30"
@@ -108,7 +99,7 @@ const Hero = () => {
                 </span>
               ))}
             </span>{" "}
-            搭建后端系统，制作简洁的界面，重视细节和响应式体验。也出于好奇在探索区块链。
+            — 注重细节，反应迅速。
           </p>
 
           <div className="flex flex-wrap gap-3 sm:gap-4 pt-2">

@@ -30,7 +30,7 @@ export type RepoContribution = {
 
 const DEFAULT_ACCENT = "#39d353";
 const DEFAULT_CELL_SIZE = 9;
-const DEFAULT_LABEL = "热门仓库";
+const DEFAULT_LABEL = "Top repositories:";
 const DEFAULT_MONTHS = 12;
 const WEEKS_PER_MONTH = 365.25 / 12 / 7;
 const STACK_LIMIT = 4;
@@ -58,8 +58,8 @@ const LABEL_REVEAL = { duration: 0.4, ease: EASE_OUT } as const;
 const LEVELS = [0, 1, 2, 3, 4] as const;
 
 const MONTH_NAMES = [
-  "1月", "2月", "3月", "4月", "5月", "6月",
-  "7月", "8月", "9月", "10月", "11月", "12月",
+  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
 ];
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -93,14 +93,15 @@ const LEVEL_OPACITY: Record<ContributionLevel, number> = {
 type LevelStyle = { backgroundColor: string; opacity: number };
 type HoveredDay = { day: Contribution; x: number; y: number };
 
-const DATE_FORMAT = new Intl.DateTimeFormat("zh-CN", {
-  month: "numeric",
+const DATE_FORMAT = new Intl.DateTimeFormat("en-US", {
+  month: "short",
   day: "numeric",
   year: "numeric",
 });
 
 function describeDay({ count, date }: Contribution) {
-  return `${DATE_FORMAT.format(new Date(`${date}T00:00:00`))}：${count} 次贡献`;
+  const noun = count === 1 ? "contribution" : "contributions";
+  return `${count} ${noun} on ${DATE_FORMAT.format(new Date(`${date}T00:00:00`))}`;
 }
 
 function emptyDays(weeks: number): Contribution[] {
@@ -151,6 +152,7 @@ function useGitHubUser(
     repos: RepoContribution[];
     username: string;
   }>();
+  const [failedLogin, setFailedLogin] = React.useState<string>();
 
   React.useEffect(() => {
     if (!login) return;
@@ -172,6 +174,7 @@ function useGitHubUser(
           !Array.isArray(json.contributions) ||
           json.contributions.length === 0
         ) {
+          setFailedLogin(login);
           onStateChange?.(false, true);
         } else {
           const reposMapped = (Array.isArray(json.repos) ? json.repos : []).map(
@@ -197,12 +200,16 @@ function useGitHubUser(
             repos: reposMapped,
             username: login,
           });
+          setFailedLogin(undefined);
           onStateChange?.(false, false);
         }
       })
       .catch((err) => {
         console.warn(`Could not load @${login}:`, err.message);
-        if (active) onStateChange?.(false, true);
+        if (active) {
+          setFailedLogin(login);
+          onStateChange?.(false, true);
+        }
       });
 
     return () => {
@@ -211,7 +218,7 @@ function useGitHubUser(
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [login]);
 
-  return data;
+  return { data: data?.username === login ? data : undefined, failed: !!login && failedLogin === login };
 }
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
@@ -539,7 +546,8 @@ const GitHubActivity = ({
   }, [open, openProp, onOpenChange]);
 
   const needsFetch = !contributionsProp.length;
-  const fetched = useGitHubUser(needsFetch ? username : undefined, onStateChange);
+  const { data: fetched, failed } = useGitHubUser(needsFetch ? username : undefined, onStateChange);
+  const loading = needsFetch && !!username && !fetched && !failed;
   const placeholder = React.useMemo(
     () => (username ? emptyDays(weeksFor(months)) : []),
     [username, months],
@@ -571,7 +579,12 @@ const GitHubActivity = ({
 
   const parsedYear = Number(contributions.at(-1)?.date.slice(0, 4));
   const displayYear = year ?? (Number.isFinite(parsedYear) ? parsedYear : null);
-  const heading = `${displayYear ? `${displayYear} 年` : ""}共 ${total} 次贡献`;
+  const noun = total === 1 ? "contribution" : "contributions";
+  const heading = failed
+    ? "Unable to load GitHub activity"
+    : loading
+      ? "Loading GitHub activity…"
+      : `${total} ${noun}${displayYear ? ` in ${displayYear}` : ""}`;
 
   // Only compute a width when the caller hasn't supplied one explicitly
   const finalStyle = React.useMemo(() => {
@@ -592,6 +605,7 @@ const GitHubActivity = ({
   return (
     <div
       data-slot="github-activity"
+      lang="en"
       className={cn(
         "relative max-w-full overflow-hidden rounded-xl bg-card/70 p-3.5 text-foreground border border-dashed border-border/80 shadow-none transition-all duration-300",
         repos.length > 0 && "pb-[68px]",
@@ -601,20 +615,31 @@ const GitHubActivity = ({
       {...props}
     >
       {/* Heading: total contribution count + year */}
-      <p className="mb-3 text-sm font-normal text-foreground px-1 tracking-tight">
+      <p role="status" className="mb-3 text-sm font-normal text-foreground px-1 tracking-tight">
         {heading}
       </p>
 
-      <ContributionGrid
-        gridKey={activeHandle}
-        contributions={contributions}
-        scale={scale}
-        cellSize={cellSize}
-        months={months}
-        showMonths={showMonths}
-        label={heading}
-        reduceMotion={reduceMotion}
-      />
+      {failed ? (
+        <a
+          href={`https://github.com/${encodeURIComponent(username ?? "")}`}
+          target="_blank"
+          rel="noreferrer"
+          className="px-1 text-sm text-muted-foreground underline"
+        >
+          View @{username}&apos;s activity on GitHub
+        </a>
+      ) : (
+        <ContributionGrid
+          gridKey={activeHandle}
+          contributions={contributions}
+          scale={scale}
+          cellSize={cellSize}
+          months={months}
+          showMonths={showMonths}
+          label={heading}
+          reduceMotion={reduceMotion}
+        />
+      )}
 
       {/* Floating repos panel — collapsed at bottom, expands to full overlay */}
       {repos.length > 0 && (
@@ -661,7 +686,7 @@ const GitHubActivity = ({
                 aria-expanded={open}
                 aria-controls={`${uid}-panel`}
                 aria-label={
-                  open ? "收起热门仓库" : "展开热门仓库"
+                  open ? "Hide top repositories" : "Show top repositories"
                 }
                 className="grid size-6 shrink-0 place-items-center rounded-full bg-muted hover:scale-105 active:scale-95 transition-transform"
               >
