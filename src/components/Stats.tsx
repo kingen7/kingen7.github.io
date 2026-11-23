@@ -1,4 +1,5 @@
 import * as React from "react";
+import { profile } from "@/data/profile";
 import { createPortal } from "react-dom";
 import {
   AnimatePresence,
@@ -710,7 +711,7 @@ const Stats = () => {
       </div>
 
       <GitHubActivity
-        username="charanmunur"
+        username={profile.githubUsername}
         cellSize={11}
         months={12}
         className="w-full"

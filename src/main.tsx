@@ -19,7 +19,6 @@ import OpenSource from "./pages/OpenSource.tsx";
 import OpenSourceDetail from "./pages/OpenSourceDetail.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import Uses from "./pages/Uses.tsx";
-import StargazerPromo from "./components/StargazerPromo.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -50,7 +49,6 @@ createRoot(document.getElementById("root")!).render(
                 </Routes>
               </div>
               <Footer />
-              <StargazerPromo />
             </div>
           </BrowserRouter>
         </SmoothScroll>

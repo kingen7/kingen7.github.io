@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { BadgeCheck, BookText, ChevronRight } from "lucide-react";
+import { BadgeCheck, ChevronRight } from "lucide-react";
 import { Button } from "./ui/button";
 import TechIcon from "./helpers/TechIcon";
 import { skills } from "@/data/tech";
+import { profile } from "@/data/profile";
 import { socials } from "@/data/socials";
 import SocialIcon from "./helpers/SocialIcon";
 import { motion, AnimatePresence } from "framer-motion";
@@ -41,7 +42,7 @@ const Hero = () => {
           </div>
           <div className="flex h-full flex-col justify-center gap-2 sm:gap-3">
             <h1 className="flex items-center gap-2 text-2xl font-normal tracking-tight text-foreground sm:text-2xl md:text-3xl">
-              Charan Munur
+              {profile.name}
               <span className="text-background shrink-0">
                 <BadgeCheck color="currentColor" fill="#3b82f6" size={24} />
               </span>
@@ -116,16 +117,6 @@ const Hero = () => {
               <Button size="lg">
                 Get in Touch
                 <ChevronRight strokeWidth={2.25} />
-              </Button>
-            </a>
-            <a
-              href="https://drive.google.com/file/d/1AF0owusJPd1yf1vRwCJcaex04pnEVL_H/view?usp=sharing"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Button variant="outline" size="lg" className="bg-card border-dashed">
-                Resume
-                <BookText />
               </Button>
             </a>
           </div>
