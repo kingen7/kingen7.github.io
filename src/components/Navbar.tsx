@@ -9,7 +9,7 @@ const navItems = [
   { href: "/projects", label: "项目" },
   { href: "/opensource", label: "开源" },
   { href: "/blogs", label: "博客" },
-  { href: "/uses", label: "工具与装备" },
+  { href: "/uses", label: "工具" },
 ];
 
 const themes = [

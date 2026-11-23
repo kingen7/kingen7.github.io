@@ -15,7 +15,7 @@ const Uses = () => {
           className="flex w-fit items-center gap-2 text-md font-light tracking-tight text-muted-foreground cursor-pointer hover:text-foreground transition-colors"
         >
           <ChevronLeft size={16} strokeWidth={2} />
-          Back to Home
+          返回首页
         </button>
       </FadeIn>
 
@@ -23,10 +23,10 @@ const Uses = () => {
       <FadeIn delay={0.1}>
         <div className="flex flex-col gap-2">
           <h1 className="text-2xl font-light tracking-tight sm:text-4xl">
-            Uses
+            工具
           </h1>
           <p className="text-base text-muted-foreground font-light leading-relaxed">
-            A curated list of the hardware, software, editor configuration, and tools I use daily for engineering and productivity.
+            这里记录了我日常开发和工作时使用的硬件、软件、编辑器配置与效率工具。
           </p>
         </div>
       </FadeIn>
@@ -72,7 +72,7 @@ const Uses = () => {
                         rel="noopener noreferrer"
                         className="shrink-0 inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors mt-1 sm:mt-0"
                       >
-                        <span>Visit</span>
+                        <span>访问</span>
                         <ArrowUpRight className="w-3.5 h-3.5 text-muted-foreground/50" />
                       </a>
                     )}
@@ -87,7 +87,7 @@ const Uses = () => {
       {/* Note footer */}
       <FadeIn delay={0.3}>
         <p className="text-xs text-muted-foreground/70 font-light leading-relaxed pt-4 border-t border-dashed border-border/40">
-          This page is inspired by the <a href="https://uses.tech" target="_blank" rel="noreferrer" className="underline underline-offset-4 hover:text-foreground">/uses page movement</a> created by <a href="https://wesbos.com" target="_blank" rel="noreferrer" className="underline underline-offset-4 hover:text-foreground">Wes Bos</a>.
+          本页灵感来自 <a href="https://wesbos.com" target="_blank" rel="noreferrer" className="underline underline-offset-4 hover:text-foreground">Wes Bos</a> 发起的 <a href="https://uses.tech" target="_blank" rel="noreferrer" className="underline underline-offset-4 hover:text-foreground">/uses 页面倡议</a>。
         </p>
       </FadeIn>
     </main>

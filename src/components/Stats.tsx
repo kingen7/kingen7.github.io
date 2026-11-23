@@ -159,7 +159,11 @@ function useGitHubUser(
     let active = true;
     onStateChange?.(true, false);
 
-    fetch(`/api/github?username=${encodeURIComponent(login)}`)
+    const activityUrl = import.meta.env.VITE_GITHUB_PAGES === "true"
+      ? `${import.meta.env.BASE_URL}github-activity.json`
+      : `/api/github?username=${encodeURIComponent(login)}`;
+
+    fetch(activityUrl)
       .then(async (res) => {
         const json = await res.json().catch(() => null);
         if (!res.ok || !json) {
