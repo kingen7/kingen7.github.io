@@ -16,7 +16,7 @@ const Projects = () => {
           onClick={() => navigate("/")}
           className="flex w-fit items-center gap-3 text-md font-light tracking-tight text-muted-foreground cursor-pointer duration-200 hover:text-foreground"
         >
-          <ChevronLeft size={20} strokeWidth={2.25} /> Back to Home
+          <ChevronLeft size={20} strokeWidth={2.25} /> 返回首页
         </button>
       </FadeIn>
       <FadeIn
@@ -26,11 +26,10 @@ const Projects = () => {
         className="flex flex-col gap-2"
       >
         <h1 className="text-2xl font-light tracking-tight sm:text-3xl">
-          All Projects
+          全部项目
         </h1>
         <p className="text-muted-foreground font-light text-lg">
-          A collection of my recent work, side projects, and experiments. Built
-          from scratch with a focus on clean code and great user experiences.
+          这里收录了我近期的作品、业余项目和实验性尝试。这些项目都从零搭建，注重代码清晰和使用体验。
         </p>
       </FadeIn>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 mt-6">

@@ -3,16 +3,38 @@ import type { TechItem } from "@/data/tech";
 
 export interface Project {
   name: string;
-  imgSrc: string;
+  imgSrc?: string;
   description: string;
   techStack: TechItem[];
-  liveLink: string;
-  githubLink: string;
-  about: string;
-  features: string[];
+  liveLink?: string;
+  githubLink?: string;
+  about?: string;
+  features?: string[];
 }
 
 export const projects: Project[] = [
+  {
+    name: "DevFlow-AI",
+    description: "面向 GitHub 研发协作的 AI 助手，协助分析 Issue、审查 PR 和排查 CI 失败。",
+    about: "结合 GitHub 仓库、项目知识库和工作区代码，整理上下文并生成结构化建议。后端使用 Python 和 FastAPI，前端使用 Next.js 和 TypeScript。",
+    features: [
+      "对 Issue 分类、评估优先级并梳理待办事项",
+      "总结 PR 变更并提供审查和测试建议",
+      "分析 CI 日志并整理可能原因和排查步骤",
+    ],
+    techStack: [projectTech.react, projectTech.typescript, projectTech.postgresql, projectTech.docker],
+    githubLink: "https://github.com/kingen7/DevFlow-AI",
+  },
+  {
+    name: "luoyijia",
+    description: "个人项目，详细介绍待补充。",
+    techStack: [],
+  },
+  {
+    name: "MEWHELP-python",
+    description: "使用 Python 开发的个人项目，源码暂不公开。",
+    techStack: [],
+  },
   {
     name: "Stargazer",
     imgSrc: "/projects/stargazer.png",

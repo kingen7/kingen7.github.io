@@ -39,9 +39,9 @@ const ProjectDetail = () => {
             {project.description}
           </p>
         </FadeIn>
-        <FadeIn delay={0.15}>
+        {(project.githubLink || project.liveLink) && <FadeIn delay={0.15}>
           <div className="flex flex-wrap gap-3 sm:gap-4">
-            <a href={project.githubLink} target="_blank" rel="noreferrer">
+            {project.githubLink && <a href={project.githubLink} target="_blank" rel="noreferrer">
               <Button
                 variant="outline"
                 className="border border-border border-dashed"
@@ -50,24 +50,24 @@ const ProjectDetail = () => {
                 <LuGithub className="w-4 h-4" />
                 View Source
               </Button>
-            </a>
-            <a href={project.liveLink} target="_blank" rel="noreferrer">
+            </a>}
+            {project.liveLink && <a href={project.liveLink} target="_blank" rel="noreferrer">
               <Button size="lg">
                 <BiLink className="w-4 h-4" />
                 Live Demo
               </Button>
-            </a>
+            </a>}
           </div>
-        </FadeIn>
-        <FadeIn delay={0.2}>
+        </FadeIn>}
+        {project.imgSrc && <FadeIn delay={0.2}>
           <img
             className="rounded-lg border border-border border-dashed"
             src={project.imgSrc}
             alt={project.name}
             loading="lazy"
           />
-        </FadeIn>
-        <FadeIn delay={0.25}>
+        </FadeIn>}
+        {project.techStack.length > 0 && <FadeIn delay={0.25}>
           <h2 className="mb-4 text-xl font-light tracking-tight sm:text-2xl">
             Technologies Used
           </h2>
@@ -82,14 +82,14 @@ const ProjectDetail = () => {
               </span>
             ))}
           </div>
-        </FadeIn>
-        <FadeIn delay={0.3}>
+        </FadeIn>}
+        {project.about && <FadeIn delay={0.3}>
           <h2 className="mb-4 text-xl font-light tracking-tight sm:text-2xl">
             About the Project
           </h2>
           <p className="text-muted-foreground font-light">{project.about}</p>
-        </FadeIn>
-        <FadeIn delay={0.35}>
+        </FadeIn>}
+        {!!project.features?.length && <FadeIn delay={0.35}>
           <h2 className="mb-4 text-xl font-light tracking-tight sm:text-2xl">
             Key Features
           </h2>
@@ -98,7 +98,7 @@ const ProjectDetail = () => {
               <li key={idx}>{feature}</li>
             ))}
           </ul>
-        </FadeIn>
+        </FadeIn>}
       </div>
     </main>
   );

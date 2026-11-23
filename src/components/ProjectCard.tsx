@@ -3,6 +3,7 @@ import { BiLink } from "react-icons/bi";
 import TechIcon from "./helpers/TechIcon";
 import type { Project } from "@/data/projects";
 import { useNavigate } from "react-router-dom";
+import { FolderCode } from "lucide-react";
 
 const ProjectCard = ({ name, imgSrc, description, techStack, liveLink, githubLink }: Project) => {
   const navigate = useNavigate();
@@ -17,12 +18,16 @@ const ProjectCard = ({ name, imgSrc, description, techStack, liveLink, githubLin
       className="group flex flex-col gap-2 bg-card border border-dashed border-border/80 p-1.5 rounded-xl w-full overflow-hidden hover:bg-muted/20 transition-all duration-200 cursor-pointer"
     >
       <div className="group/image rounded-lg overflow-hidden border border-border/80 bg-muted/30">
-        <img
+        {imgSrc ? <img
           src={imgSrc}
           alt={name}
           loading="lazy"
           className="rounded-lg w-full object-cover transition-all duration-500 ease-out group-hover/image:blur-xs"
-        />
+        /> : (
+          <div className="grid aspect-video place-items-center text-muted-foreground">
+            <FolderCode className="h-10 w-10" aria-hidden="true" />
+          </div>
+        )}
       </div>
 
       <div className="px-2 mt-4">
@@ -30,7 +35,7 @@ const ProjectCard = ({ name, imgSrc, description, techStack, liveLink, githubLin
         <p className="mt-1 text-sm font-light text-muted-foreground line-clamp-2">{description}</p>
       </div>
 
-      <div className="flex items-center gap-4 px-2 mt-4">
+      {techStack.length > 0 && <div className="flex items-center gap-4 px-2 mt-4">
         {techStack.slice(0, 8).map((tech) => (
           <TechIcon key={tech.name} item={tech} className="w-5 h-5" showTooltip />
         ))}
@@ -39,12 +44,13 @@ const ProjectCard = ({ name, imgSrc, description, techStack, liveLink, githubLin
             +{techStack.length - 8}
           </span>
         )}
-      </div>
+      </div>}
 
+      {(liveLink || githubLink) && <>
       <div className="w-full h-px bg-border mt-2 mb-1" />
 
       <div className="flex items-center justify-between mt-1 px-2 pb-2">
-        <a
+        {liveLink && <a
           href={liveLink}
           target="_blank"
           rel="noreferrer"
@@ -53,8 +59,8 @@ const ProjectCard = ({ name, imgSrc, description, techStack, liveLink, githubLin
         >
           <BiLink className="w-4 h-4" />
           <span className="text-[15px] font-extralight">Live</span>
-        </a>
-        <a
+        </a>}
+        {githubLink && <a
           href={githubLink}
           target="_blank"
           rel="noreferrer"
@@ -63,8 +69,9 @@ const ProjectCard = ({ name, imgSrc, description, techStack, liveLink, githubLin
         >
           <LuGithub className="w-4 h-4" />
           <span className="text-[15px] font-extralight">Github</span>
-        </a>
+        </a>}
       </div>
+      </>}
     </div>
   );
 };

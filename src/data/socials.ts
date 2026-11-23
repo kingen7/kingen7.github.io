@@ -14,4 +14,15 @@ export const socials: SocialLink[] = [
     darkIcon: "/social/github-dark.svg",
     href: `https://github.com/${profile.githubUsername}`,
   },
+  {
+    name: "X",
+    icon: "/social/x.svg",
+    darkIcon: "/social/x-dark.svg",
+    href: "https://x.com/liuliuw2128293",
+  },
+  {
+    name: "网易邮箱",
+    icon: "/social/netease-mail.svg",
+    href: "mailto:zhuiliang0@163.com",
+  },
 ];

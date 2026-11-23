@@ -15,7 +15,7 @@ const Contact = () => {
           onClick={() => navigate("/")}
           className="flex w-fit items-center gap-3 text-md font-light tracking-tight text-muted-foreground cursor-pointer duration-200 hover:text-foreground"
         >
-          <ChevronLeft size={20} strokeWidth={2.25} /> Back to Home
+          <ChevronLeft size={20} strokeWidth={2.25} /> 返回首页
         </button>
       </FadeIn>
 
@@ -24,14 +24,12 @@ const Contact = () => {
         <div className="flex flex-col gap-10 justify-center">
           <FadeIn delay={0.1}>
             <h1 className="text-3xl font-light tracking-tight sm:text-4xl">
-              Let's connect
+              联系我
             </h1>
           </FadeIn>
           <FadeIn delay={0.15}>
             <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
-              I'm always open to discussing new projects, creative ideas, or
-              opportunities to be part of your visions. Whether you have a
-              question or just want to say hi, feel free to drop a message!
+              欢迎找我聊聊新项目、创意点子或合作机会。有问题想交流，或者只是想打个招呼，都可以给我留言。
             </p>
           </FadeIn>
         </div>
@@ -55,7 +53,7 @@ const Contact = () => {
                         ? social.darkIcon
                         : social.icon
                     }
-                    alt={social.name}
+                    alt=""
                     className="h-6 w-6 rounded-sm object-contain"
                   />
                   <span className="text-base font-light tracking-tight">

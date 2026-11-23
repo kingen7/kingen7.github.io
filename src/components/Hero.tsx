@@ -52,8 +52,8 @@ const Hero = () => {
                 <a
                   key={name}
                   href={href}
-                  target="_blank"
-                  rel="noreferrer"
+                  target={href.startsWith("mailto:") ? undefined : "_blank"}
+                  rel={href.startsWith("mailto:") ? undefined : "noreferrer"}
                   className="border-0 hover:opacity-80 transition-opacity"
                 >
                   <SocialIcon
