@@ -64,21 +64,6 @@ const VisitorCount = () => {
     };
   }, [shouldTrack]);
 
-  const getOrdinal = (n: number) => {
-    const v = n % 100;
-    if (v >= 11 && v <= 13) return "th";
-    switch (n % 10) {
-      case 1:
-        return "st";
-      case 2:
-        return "nd";
-      case 3:
-        return "rd";
-      default:
-        return "th";
-    }
-  };
-
   return (
     <div className="flex w-full items-center justify-center rounded-lg sm:justify-start">
       {loading ? (
@@ -99,17 +84,16 @@ const VisitorCount = () => {
         <div className="flex w-full items-center justify-center gap-2 sm:justify-start">
           <UserRound size={17} className="shrink-0 text-muted-foreground" />
           <p className="flex min-w-0 flex-wrap items-center justify-center gap-x-1 gap-y-0.5 text-center text-base leading-tight text-muted-foreground sm:justify-start sm:text-left">
-            <span>You are</span>
+            <span>你是第</span>
             <span className="whitespace-nowrap text-lg font-light leading-none text-foreground tabular-nums sm:text-xl">
               {count}
-              <sup className="ml-0.5 align-super text-[0.6em] font-light">
-                {getOrdinal(count)}
-              </sup>
             </span>
-            <span className="whitespace-nowrap text-sm font-light leading-none text-muted-foreground tabular-nums sm:text-base">
-              {total !== null ? `/ ${total}` : ""}
-            </span>
-            <span className="whitespace-nowrap text-base">visitors</span>
+            <span className="whitespace-nowrap">位访客</span>
+            {total !== null && (
+              <span className="whitespace-nowrap text-sm font-light leading-none text-muted-foreground tabular-nums sm:text-base">
+                （共 {total} 位）
+              </span>
+            )}
           </p>
         </div>
       )}

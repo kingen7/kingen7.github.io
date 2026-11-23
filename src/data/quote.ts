@@ -4,9 +4,9 @@ export interface Quote {
 }
 
 export const quotes: Quote[] = [
-  { text: "Preoccupied with a single leaf, you won't see the tree.", author: ""},
-  { text: "Preoccupied with a single tree, you'll miss the entire forest.",  author: ""},
-  { text: "Don't be preoccupied with a single spot.",  author: ""},
-  { text: "See everything in its entirety... effortlessly.", author: "" },
-  { text: "That is what it means to truly 'see'.",  author: "Takuan Sōhō"}
+  { text: "只盯着一片叶子，就看不见整棵树。", author: "" },
+  { text: "只盯着一棵树，就看不见整片森林。", author: "" },
+  { text: "别把目光只停在一处。", author: "" },
+  { text: "放松心神，自然就能看见全貌。", author: "" },
+  { text: "这才是真正的看见。", author: "泽庵宗彭" },
 ];

@@ -44,7 +44,7 @@ const QuoteSection = () => {
                 className="text-muted-foreground italic text-base md:text-lg text-center"
                 style={{ fontFamily: "'Lora', serif" }}
               >
-                "{current.text}"
+                “{current.text}”
               </p>
               {current.author && (
                 <motion.p

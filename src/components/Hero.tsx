@@ -9,7 +9,7 @@ import SocialIcon from "./helpers/SocialIcon";
 import { motion, AnimatePresence } from "framer-motion";
 import { containerVariants, itemVariants } from "@/lib/motionVariants";
 
-const LABELS = ["FullStack Developer", "Not a Vibe Coder"];
+const LABELS = ["全栈开发者", "不只靠 AI 写代码"];
 
 const Hero = () => {
   const [labelIdx, setLabelIdx] = useState(0);
@@ -35,7 +35,7 @@ const Hero = () => {
             {/* avatar */}
             <img
               src={`${import.meta.env.BASE_URL}images/musashi.svg`}
-              alt="profile"
+              alt={`${profile.name}的头像`}
               decoding="async"
               className="block h-35 w-35 shrink-0 rounded-full border-2 border-border object-cover object-center p-1 shadow-sm sm:h-40 sm:w-40"
             />
@@ -90,13 +90,13 @@ const Hero = () => {
                 </motion.span>
               </AnimatePresence>
             </span>
-            {" - "}
+            {" —— "}
             <span className="text-[0.85em] font-light text-muted-foreground sm:text-[0.90em]">
-              learning how systems actually work, and how clean code gets written
+              探索系统是怎么运转的，也琢磨怎样把代码写得更清晰
             </span>
           </h1>
           <p className="text-base font-light leading-7 text-muted-foreground sm:text-lg sm:leading-8">
-            I build backend systems and clean interfaces with{" "}
+            我用{" "}
             <span className="inline items-center gap-2 align-middle">
               {skills.map((skill) => (
                 <span
@@ -108,14 +108,13 @@ const Hero = () => {
                 </span>
               ))}
             </span>{" "}
-            — with a keen eye for detail and responsiveness. Also exploring blockchain out of
-            curiosity.
+            搭建后端系统，制作简洁的界面，重视细节和响应式体验。也出于好奇在探索区块链。
           </p>
 
           <div className="flex flex-wrap gap-3 sm:gap-4 pt-2">
             <a href="/contact">
               <Button size="lg">
-                Get in Touch
+                联系我
                 <ChevronRight strokeWidth={2.25} />
               </Button>
             </a>

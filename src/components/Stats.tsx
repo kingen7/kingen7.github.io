@@ -30,7 +30,7 @@ export type RepoContribution = {
 
 const DEFAULT_ACCENT = "#39d353";
 const DEFAULT_CELL_SIZE = 9;
-const DEFAULT_LABEL = "Top repositories:";
+const DEFAULT_LABEL = "热门仓库";
 const DEFAULT_MONTHS = 12;
 const WEEKS_PER_MONTH = 365.25 / 12 / 7;
 const STACK_LIMIT = 4;
@@ -58,8 +58,8 @@ const LABEL_REVEAL = { duration: 0.4, ease: EASE_OUT } as const;
 const LEVELS = [0, 1, 2, 3, 4] as const;
 
 const MONTH_NAMES = [
-  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+  "1月", "2月", "3月", "4月", "5月", "6月",
+  "7月", "8月", "9月", "10月", "11月", "12月",
 ];
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -93,15 +93,14 @@ const LEVEL_OPACITY: Record<ContributionLevel, number> = {
 type LevelStyle = { backgroundColor: string; opacity: number };
 type HoveredDay = { day: Contribution; x: number; y: number };
 
-const DATE_FORMAT = new Intl.DateTimeFormat("en-US", {
-  month: "short",
+const DATE_FORMAT = new Intl.DateTimeFormat("zh-CN", {
+  month: "numeric",
   day: "numeric",
   year: "numeric",
 });
 
 function describeDay({ count, date }: Contribution) {
-  const noun = count === 1 ? "contribution" : "contributions";
-  return `${count} ${noun} on ${DATE_FORMAT.format(new Date(`${date}T00:00:00`))}`;
+  return `${DATE_FORMAT.format(new Date(`${date}T00:00:00`))}：${count} 次贡献`;
 }
 
 function emptyDays(weeks: number): Contribution[] {
@@ -572,7 +571,7 @@ const GitHubActivity = ({
 
   const parsedYear = Number(contributions.at(-1)?.date.slice(0, 4));
   const displayYear = year ?? (Number.isFinite(parsedYear) ? parsedYear : null);
-  const heading = `${total} contributions${displayYear ? ` in ${displayYear}` : ""}`;
+  const heading = `${displayYear ? `${displayYear} 年` : ""}共 ${total} 次贡献`;
 
   // Only compute a width when the caller hasn't supplied one explicitly
   const finalStyle = React.useMemo(() => {
@@ -662,7 +661,7 @@ const GitHubActivity = ({
                 aria-expanded={open}
                 aria-controls={`${uid}-panel`}
                 aria-label={
-                  open ? "Hide top repositories" : "Show top repositories"
+                  open ? "收起热门仓库" : "展开热门仓库"
                 }
                 className="grid size-6 shrink-0 place-items-center rounded-full bg-muted hover:scale-105 active:scale-95 transition-transform"
               >
@@ -706,7 +705,7 @@ const Stats = () => {
     <section id="stats" className="w-full space-y-3">
       <div className="flex flex-col gap-1 pb-3">
         <p className="text-2xl font-light tracking-tight sm:text-3xl">
-          GitHub Activity
+          GitHub 活动
         </p>
       </div>
 

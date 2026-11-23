@@ -6,16 +6,16 @@ import { useState } from "react";
 import { profile } from "@/data/profile";
 
 const navItems = [
-  { href: "/projects", label: "Projects" },
-  { href: "/opensource", label: "Open Source" },
-  { href: "/blogs", label: "Blogs" },
-  { href: "/uses", label: "Uses" },
+  { href: "/projects", label: "项目" },
+  { href: "/opensource", label: "开源" },
+  { href: "/blogs", label: "博客" },
+  { href: "/uses", label: "工具与装备" },
 ];
 
 const themes = [
-  { theme: "system", icon: TvMinimal },
-  { theme: "light", icon: Sun },
-  { theme: "dark", icon: Moon },
+  { theme: "system", icon: TvMinimal, label: "跟随系统" },
+  { theme: "light", icon: Sun, label: "浅色模式" },
+  { theme: "dark", icon: Moon, label: "深色模式" },
 ];
 
 const Navbar = () => {
@@ -67,10 +67,12 @@ const Navbar = () => {
             onValueChange={(v) => setTheme(v as "light" | "dark" | "system")}
           >
             <TabsList className="flex rounded-full border border-dashed border-border/70 bg-muted/30 gap-1 p-1">
-              {themes.map(({ theme, icon: Icon }) => (
+              {themes.map(({ theme, icon: Icon, label }) => (
                 <TabsTrigger
                   key={theme}
                   value={theme}
+                  aria-label={label}
+                  title={label}
                   className="h-6 w-6 rounded-full flex items-center justify-center bg-transparent text-muted-foreground transition-colors hover:text-foreground data-[state=active]:bg-background data-[state=active]:text-foreground! data-[state=active]:shadow-sm"
                 >
                   <Icon className="size-[16px]" />
@@ -84,7 +86,7 @@ const Navbar = () => {
         <button
           className="relative w-9 h-9 flex sm:hidden items-center justify-center p-2 text-muted-foreground hover:text-foreground rounded-md hover:bg-muted/50 transition-colors duration-200"
           onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle Menu"
+          aria-label={isOpen ? "关闭菜单" : "打开菜单"}
         >
           <Menu
             className={`absolute transition-all duration-200 ease-in-out ${
@@ -138,10 +140,12 @@ const Navbar = () => {
             onValueChange={(v) => setTheme(v as "light" | "dark" | "system")}
           >
             <TabsList className="flex rounded-full border border-dashed border-border/70 bg-muted/30 gap-1 p-1">
-              {themes.map(({ theme, icon: Icon }) => (
+              {themes.map(({ theme, icon: Icon, label }) => (
                 <TabsTrigger
                   key={theme}
                   value={theme}
+                  aria-label={label}
+                  title={label}
                   className="h-6 w-6 rounded-full flex items-center justify-center bg-transparent text-muted-foreground transition-colors hover:text-foreground data-[state=active]:bg-background data-[state=active]:text-foreground! data-[state=active]:shadow-sm"
                 >
                   <Icon className="size-[16px]" />

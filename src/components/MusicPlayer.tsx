@@ -35,7 +35,7 @@ const MusicIcon = ({
     >
       <img
         src="/images/aruarian-dance.webp"
-        alt="Aruarian Dance"
+        alt="《Aruarian Dance》封面"
         className={`w-full h-full object-cover transition-transform duration-500 ${
           isPlaying ? "scale-110" : "scale-100 group-hover:scale-105"
         }`}
@@ -92,7 +92,7 @@ export const MusicPlayer = () => {
         <button
           onClick={togglePlay}
           className="ml-2 p-2.5 rounded-full bg-foreground/5 hover:bg-foreground/10 text-foreground transition-all active:scale-90"
-          aria-label={isPlaying ? "Pause" : "Play"}
+          aria-label={isPlaying ? "暂停音乐" : "播放音乐"}
         >
           {isPlaying ? (
             <Pause size={18} className="fill-current" />

@@ -12,14 +12,14 @@ const SkillSection = () => {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <p className="text-2xl font-light tracking-tight sm:text-3xl">
-            Technologies
+            技术栈
           </p>
         </div>
         <button
           onClick={() => setIsInline(!isInline)}
           className="flex h-8 w-8 items-center justify-center rounded-md border border-dashed border-border/70 bg-card text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
-          title={isInline ? "Show animated rows" : "Show inline"}
-          aria-label="Toggle inline view"
+          title={isInline ? "切换到滚动视图" : "切换到平铺视图"}
+          aria-label={isInline ? "切换到滚动视图" : "切换到平铺视图"}
         >
           {isInline ? <List size={16} /> : <LayoutGrid size={16} />}
         </button>
